@@ -1,73 +1,43 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Changing the department of a student</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-        
-        <!--jQuery library-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-
-        <!--Latest compiled and minified JavaScript--> 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" text="text/css" href="mile.css">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="mile.css">
+        <script src="mile.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>STUDENT PORTAL</title>
+        <style>
+            a:link,a:visited,a:hover,a:active{
+                  text-decoration: none;
+                  background-color: grey;
+                  color: white;
+                  padding: 12px 18px;
+                  margin-top: 8px;
+                  margin-right: 16px;
+                  border: none;
+                  border-radius: 4px;
+                  float: right;
+                }
+				.heading { color: #FFFFFF; }
+            </style>
     </head>
-    <body>
-        
-        <div class="container-fluid" id="back-image">
-            <h2 align="center">REQUEST DEPARTMENT CHANGE</h2>
-            <br>
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
-                    
-                <form>
-                    <div class="form-group">
-                        Roll Number: 
-                        <input class="form-control" type="text" placeholder="Roll Number" name="rollno" required="true">
-                    </div>
-                    <div class="form-group">
-                        Department:<!--<input list="dept" name="dept">
-                        <!--<datalist id="dept">
-                            <option value="Not selected"selected>
-                            <option value="EEE">
-                            <option value="CSE">
-                            <option value="MECH">
-                            <option value="CIVIL">
-                            <option value="BIO">
-                        </datalist>-->
-                        
-                        <select id="sel" class="form-control" required="true">
-                            
-                            <option value="eee">EEE</option>
-                            <option value="cse">CSE</option>
-                            <option value="mech">MECH</option>
-                            <option value="civil">CIVIL</option>
-                            
-                        </select>
-                    </div>
-                    <div class="form-group" id="alig">
-                        <!--<button type="Submit" class="btn btn-secondary float-right" value="go back" >-->
-                            <a href="index.html" class="btn btn-secondary" id="col">Go Back</a><!--Go Back</button>-->
-                        <button type="Submit" class="btn btn-success float-right" value="submit" id="but-hover">Submit</button>
-                    </div>
-                </form>
-                </div>
-            </div>
-        </div>
-        <footer class="x">
-            <div class="container">
-                <center>
-                    <p>
-                    Copyright © Student Portal.All Rights Reserved | Contact Us:+91 9000000000
-                </p>
-                </center>
-            </div>
-        </footer>
-    </body>
+<body>
+<h1 class="heading">REQUEST DEPARTMENT CHANGE</h1>
+<br/>
+<form>    
+    <label for="roll" class="heading">Roll Number:</label>
+     <input type="text" name="rollnumber" placeholder="RollNumber">
+ <label for="department" class="heading">Select Department:</label>
+ <br/>
+ <select class="deptd" name="department">
+     <option value="EEE">EEE</option>
+     <option value="MECH">MECH</option>
+     <option value="CSE">CSE</option>
+     <option value="CIVIL">CIVIL</option>
+ </select>
+<br/>
+<input onclick="register()" value="Request" type="submit">
+<a href="index.html">Go Back</a>
+</form>
+</body>
 </html>
