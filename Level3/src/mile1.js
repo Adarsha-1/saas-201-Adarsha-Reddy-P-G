@@ -1,75 +1,87 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-function validateInputs(input)
-{
-    var phno= /^\d{10}$/;    
-    var inputtxt=document.getElementById("ph");
-    if((inputtxt.value.match(phno)))
-    {
-        var name=document.getElementById("name").value;
-        var gmail1=document.getElementById("ph").value;
-        var gmail=document.getElementById("gm");
-        var pattern=/^[a-zA-Z0-9._-]+@[college]+\.edu$/;
-        var e=document.getElementById("old");
-        var pri_dept= e.options[e.selectedIndex].value;
-        var e1=document.getElementById("new");
-        var pri_dept1= e1.options[e1.selectedIndex].value;
-        if((input.value.match(pattern)))
-        {
-            if(pri_dept.match(pri_dept1))
-            {
-                alert("Primary dept and secondry department should not be same");
-            }
-            else
-            {
-                document.getElementById('result_display').style.display = "block";
-                document.getElementById('display').innerHTML =
-                        "name: "+name+"\n"+"phno: "+gmail1+"\n"+"email: "+input.value+"\n"+"department1: "+pri_dept+"\n"+"department2: "+pri_dept1;
-            }    
-        }
-        else
-        {
-            alert("GMAIl format should be ex@college.edu");
-            return false;
-        }
-        
-    }
-    else
-    {
-        alert("PHONE NUMBER should be 10 digits");
-        return false;
-    }
-}
+(function() {
 
-function changeSecondaryOption(){
-  var selected = $("#old").find('option:selected');
-  var extra = selected.data('id'); 
-  
-  $('#new option').prop('disabled', false);
-  
-  $("#new > option").each(function() {
-    var data=$(this).data('id');
-    if(parseInt(data)==parseInt(extra)){
-    	console.log(data);
-    	$(this).prop('disabled',true);
-    }
-	});
-}
+  let inputs = document.getElementsByTagName("input");
+  let name=inputs[0];
+  let phone=inputs[1];
+  let email=inputs[2];
 
-function changePrimaryOption(){
-  var selected = $("#new").find('option:selected');
-  var extra = selected.data('id'); 
-  
-  $('#old option').prop('disabled', false);
-  
-  $("#old > option").each(function() {
-    var data=$(this).data('id');
-    if(parseInt(data)==parseInt(extra)){
-    	console.log(data);
-    	$(this).prop('disabled',true);
+  let selects = document.getElementsByTagName("select");
+  let department1 = selects[0];
+  let department2=selects[1];
+
+  var initialize = function() {
+  var button=document.querySelector("button");
+  button.addEventListener("click", onSubmit);
+  department1.addEventListener("change", disableDuplicateSecondaryDepartment);
+  };
+
+  var disableDuplicateSecondaryDepartment = function() {
+    for(var i=0;i<department2.length;i++)
+    {
+      if(department2.options[i].value===department1.value)
+        {
+          department2.options[i].disabled=true;
+        }
+      else
+        {
+          department2.options[i].disabled=false;
+        }
     }
-	});
-}
+  }
+
+  var constructData = function() {
+    var data = {};
+	data[name.name]=name.value;
+    data[phone.name]=phone.value;
+    data[email.name]=email.value;
+    data[department1.name]=department1.value;
+    data[department2.name]=department2.value;
+    return data;
+  }
+
+  var validateResults = function(data) {
+    var isValid = true;
+    var reg = /^[A-Za-z0-9.]+@college.edu$/;
+    if(data[name.name].length>100){
+    isValid =false;}
+    else if(data[phone.name].length>10){
+    isValid=false;}
+    else if(!reg.test(data[email.name])){
+    isValid=false;}
+    else if(department1.value===department2.value){
+      isValid=false;
+    }
+    else{
+    isValid=true;}
+    console.log(reg.test(data[email.name]));
+    return isValid;
+  };
+
+  var onSubmit = function(event) {
+    event.preventDefault()
+    var data = constructData();
+    if (validateResults(data)) {
+      printResults(data);
+      console.log(data);
+    } else {
+      var resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = '';
+      resultsDiv.classList.add("hide");
+    }
+  };
+
+  var printResults = function(data) {
+    var constructElement = function([key, value]) {
+      return `<p class='result-item'>${key}: ${value}</p>`;
+    };
+
+    var resultHtml = (Object.entries(data) || []).reduce(function(innerHtml, keyValuePair) {
+      debugger
+      return innerHtml + constructElement(keyValuePair);
+    }, '');
+    var resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = resultHtml;
+    resultsDiv.classList.remove("hide");
+  };
+  document.addEventListener('DOMContentLoaded', initialize);
+})();
