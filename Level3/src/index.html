@@ -1,68 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Enroll into department</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="mile1.js" text="text/javascript"></script>
-      
-        <link rel="stylesheet" text="text/css" href="mile1.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        
-        <div class="container-fluid" id="back-image1">
-            <h2 align="center" >ENROLL INTO A DEPARTMENT</h2>
-            <br>
-            <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
-                
-                <form name="form1">
-                    <div class="form-group">
-                        Name: 
-                        <input class="form-control" type="text" placeholder="Name" id="name" required="true" required minlength="1" maxlength="100">
-                    </div>
-                    <div class="form-group">
-                        Phone Number:
-                        <input class="form-control" type="text" placeholder="Phone number" id="ph" name="phone" required="true" required minlength="1" required maxlength="10">
-                    </div>
-                    <div class="form-group">
-                        Email address:
-                        <input class="form-control" type="text" placeholder="Gmail"  id="em" name="email" required="true" pattern="[a-z0-9._%+-]+@[education]+\.edu">
-                    </div>
-                    <div class="form-group" >
-                        Primary choice for Department:
-                        <select id="old" class="sel form-control" required="true" onchange="changeSecondaryOption()">
-                            <option value="EEE" data-id="1" selected="selected">EEE</option>
-                            <option value="CSE" data-id="2">CSE</option>
-                            <option value="MECH" data-id="3" >MECH</option>
-                            <option value="CIVIL" data-id="4">CIVIL</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        Secondary choice for Department:
-                        <select id="new"  class="sel form-control" required="true" onchange="changePrimaryOption()">
-                            <option value="EEE" data-id="1">EEE</option>
-                            <option value="CSE" data-id="2">CSE</option>
-                            <option value="MECH" data-id="3" selected="selected">MECH</option>
-                            <option value="CIVIL" data-id="4">CIVIL</option>
-                        </select>
-                    </div>
-                </form>
-                <div>
-                    <input type="submit" class="btn btn-success float-right" value="submit" id="but-hover" onclick="validateInputs(document.form1.email)">
-                    <br>
-                    <br>
-                    <div id="result_display" style="display: none">
-                        <span style="border:1px; border-style: ridge;border-radius: 15px; border-color:#FFFFFF; padding: 1em;" id="display" class="newline"></span>
-                    </div>
-                    
-                    <!--<p style="border:3px; border-style:solid; border-color:#FFFFFF; padding: 1em;"><span id="display" class="newline"></span></p>-->
-                </div>
-            </div>
-            
-        </div>
-       
-        
-    </body>
+  <head>
+    <title>College Registration </title>
+    <link rel="stylesheet" type="text/css" href="mile1.css">
+  </head>
+  <body >
+    <form class="registration-form">
+      <div class="form-group">
+        <label class="sab">Name </label>
+        <input type="text" name="name" required>
+      </div>
+      <div>
+        <label class="sab">Phone number </label>
+        <input type="number" name="phno" required>
+      </div>
+      <div>
+        <label class="sab">Email Address </label>
+        <input type="email" name="emailaddress" required>
+      </div>
+      <div>
+        <label class="sab">Primary Choice for Department </label>
+        <select name="department1" class="department">
+          <option value="EEE">EEE</option>
+          <option value="MECH">MECH</option>
+          <option value="CSE">CSE</option>
+          <option value="CIVIL">CIVIL</option>
+        </select>
+      </div>
+      <div>
+        <label class="sab">Secondary Choice for Department </label>
+        <select name="department2" class="department">
+          <option value="EEE" disabled>EEE</option>
+          <option value="MECH">MECH</option>
+          <option value="CSE">CSE</option>
+          <option value="CIVIL">CIVIL</option>
+        </select>
+      </div>
+      <button class="button" type="submit"> Submit </button>
+    </form>
+    <div id="results" class="results-section hide"></div>
+    <script src="mile1.js"></script>
+  </body>
 </html>
